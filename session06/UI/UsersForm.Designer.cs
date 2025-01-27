@@ -36,6 +36,9 @@ partial class UsersForm
         buttonPrev = new Button();
         buttonFirst = new Button();
         labelPage = new Label();
+        label1 = new Label();
+        comboBoxIsActive = new ComboBox();
+        button1 = new Button();
         groupBoxUsers.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)dataGridViewUsers).BeginInit();
         SuspendLayout();
@@ -45,7 +48,7 @@ partial class UsersForm
         groupBoxUsers.Controls.Add(buttonSave);
         groupBoxUsers.Location = new Point(12, 12);
         groupBoxUsers.Name = "groupBoxUsers";
-        groupBoxUsers.Size = new Size(965, 291);
+        groupBoxUsers.Size = new Size(965, 276);
         groupBoxUsers.TabIndex = 0;
         groupBoxUsers.TabStop = false;
         groupBoxUsers.Text = "groupBoxUsers";
@@ -53,7 +56,7 @@ partial class UsersForm
         // 
         // buttonSave
         // 
-        buttonSave.Location = new Point(884, 262);
+        buttonSave.Location = new Point(884, 247);
         buttonSave.Name = "buttonSave";
         buttonSave.Size = new Size(75, 23);
         buttonSave.TabIndex = 0;
@@ -118,11 +121,43 @@ partial class UsersForm
         labelPage.TabIndex = 6;
         labelPage.Text = "1/10";
         // 
+        // label1
+        // 
+        label1.AutoSize = true;
+        label1.Location = new Point(12, 312);
+        label1.Name = "label1";
+        label1.Size = new Size(48, 15);
+        label1.TabIndex = 7;
+        label1.Text = "IsActive";
+        // 
+        // comboBoxIsActive
+        // 
+        comboBoxIsActive.DropDownStyle = ComboBoxStyle.DropDownList;
+        comboBoxIsActive.FormattingEnabled = true;
+        comboBoxIsActive.Items.AddRange(new object[] { "All", "Active", "Inactive" });
+        comboBoxIsActive.Location = new Point(66, 309);
+        comboBoxIsActive.Name = "comboBoxIsActive";
+        comboBoxIsActive.Size = new Size(121, 23);
+        comboBoxIsActive.TabIndex = 8;
+        // 
+        // button1
+        // 
+        button1.Location = new Point(896, 308);
+        button1.Name = "button1";
+        button1.Size = new Size(75, 23);
+        button1.TabIndex = 9;
+        button1.Text = "Search";
+        button1.UseVisualStyleBackColor = true;
+        button1.Click += button1_Click;
+        // 
         // UsersForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(989, 670);
+        Controls.Add(button1);
+        Controls.Add(comboBoxIsActive);
+        Controls.Add(label1);
         Controls.Add(labelPage);
         Controls.Add(buttonFirst);
         Controls.Add(buttonPrev);
@@ -149,4 +184,7 @@ partial class UsersForm
     private Button buttonPrev;
     private Button buttonFirst;
     private Label labelPage;
+    private Label label1;
+    private ComboBox comboBoxIsActive;
+    private Button button1;
 }

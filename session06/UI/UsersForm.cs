@@ -53,11 +53,26 @@ public partial class UsersForm : Form
         //page 1 = skip(0 = pageSize * page - 1).take(pageSize)
         //page 2 = skip(3 = pageSize * page - 1).take(pageSize)
         //page 3 = skip(6 = pageSize * page - 1).take(pageSize)
-        dataGridViewUsers.DataSource = ctx.Users
-            .Skip(pageSize * (currentPage - 1))
-            .Take(pageSize).ToList();
 
-        int total = ctx.Users.Count();
+        int total = 0;
+        if (comboBoxIsActive.SelectedItem == "All") {
+            dataGridViewUsers.DataSource = ctx.Users
+               .Skip(pageSize * (currentPage - 1))
+               .Take(pageSize).ToList();
+            total = ctx.Users.Count();
+        }
+        if(comboBoxIsActive.SelectedItem != "All") {
+            var isActive = comboBoxIsActive.SelectedItem == "Active";
+            dataGridViewUsers.DataSource = ctx.Users
+                .Where(x => x.IsActive == isActive)
+                .Skip(pageSize * (currentPage - 1))
+                .Take(pageSize).ToList();
+
+            total = ctx.Users.Where(x => x.IsActive == isActive).Count();
+        }
+        
+
+       
         totalPages = Convert.ToInt32(Math.Ceiling(total / Convert.ToDecimal(pageSize)));
 
         labelPage.Text = $"{currentPage}/{totalPages}";
@@ -80,7 +95,7 @@ public partial class UsersForm : Form
 
     private void buttonNext_Click(object sender, EventArgs e)
     {
-        if(currentPage < totalPages)
+        if (currentPage < totalPages)
         {
             currentPage += 1;
             loadData();
@@ -90,6 +105,11 @@ public partial class UsersForm : Form
     private void buttonLast_Click(object sender, EventArgs e)
     {
         currentPage = totalPages;
+        loadData();
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
         loadData();
     }
 }
