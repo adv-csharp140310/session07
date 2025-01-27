@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using session06.Utils;
+using System.ComponentModel.DataAnnotations;
 
 namespace session06.Model;
 
@@ -9,6 +10,7 @@ namespace session06.Model;
 //Fluent API
 public class User
 {
+    [NoUI]
     public int Id { get; set; }
 
     [MaxLength(100)]

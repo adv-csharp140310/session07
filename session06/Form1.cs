@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using session06.Model;
+using session06.UI;
 using System.Reflection;
 
 namespace session06
@@ -48,6 +49,12 @@ namespace session06
 
             ctx.SaveChanges();
             MessageBox.Show("Done!");
+        }
+
+        private void buttonUserManagment_Click(object sender, EventArgs e)
+        {
+            var frm = new UsersForm();
+            frm.ShowDialog();
         }
     }
 }

@@ -29,23 +29,35 @@
         private void InitializeComponent()
         {
             buttonAddBlog = new Button();
+            buttonUserManagment = new Button();
             SuspendLayout();
             // 
             // buttonAddBlog
             // 
             buttonAddBlog.Location = new Point(12, 12);
             buttonAddBlog.Name = "buttonAddBlog";
-            buttonAddBlog.Size = new Size(75, 23);
+            buttonAddBlog.Size = new Size(154, 23);
             buttonAddBlog.TabIndex = 0;
             buttonAddBlog.Text = "Add Blog";
             buttonAddBlog.UseVisualStyleBackColor = true;
             buttonAddBlog.Click += buttonAddBlog_Click;
+            // 
+            // buttonUserManagment
+            // 
+            buttonUserManagment.Location = new Point(12, 41);
+            buttonUserManagment.Name = "buttonUserManagment";
+            buttonUserManagment.Size = new Size(154, 23);
+            buttonUserManagment.TabIndex = 1;
+            buttonUserManagment.Text = "User Managment";
+            buttonUserManagment.UseVisualStyleBackColor = true;
+            buttonUserManagment.Click += buttonUserManagment_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(772, 380);
+            Controls.Add(buttonUserManagment);
             Controls.Add(buttonAddBlog);
             Name = "Form1";
             Text = "Form1";
@@ -56,5 +68,6 @@
         #endregion
 
         private Button buttonAddBlog;
+        private Button buttonUserManagment;
     }
 }
