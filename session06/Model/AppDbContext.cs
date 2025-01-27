@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using session06.utils;
 using System.Diagnostics;
 
 namespace session06.Model;
@@ -17,13 +18,24 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<User>().ToTable("users_xyz", "auth");
         //Fluent API
         modelBuilder.Entity<User>()
-                .Property(x => x.Email)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("email_xyz")
-                ;
+            .Property(x => x.Email)
+            .HasMaxLength(50)
+            .IsUnicode(false)
+            .HasColumnName("email_xyz")
+        ;
 
         //******
+
+        var api = new MyFluentAPI();
+        api.HasPort(100);
+        api.HasUsername("xyz");
+        api.HasPassword("abc");
+
+        var api2 = new MyFluentAPI();
+        api2.HasPort(100)
+            .HasUsername("xyz")
+            .HasPassword("abc")
+        ;
 
         base.OnModelCreating(modelBuilder);
     }
