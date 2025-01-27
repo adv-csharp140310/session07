@@ -12,6 +12,21 @@ public class AppDbContext : DbContext
         base.OnConfiguring(optionsBuilder);
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {        
+        modelBuilder.Entity<User>().ToTable("users_xyz", "auth");
+        //Fluent API
+        modelBuilder.Entity<User>()
+                .Property(x => x.Email)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("email_xyz")
+                ;
+
+        //******
+
+        base.OnModelCreating(modelBuilder);
+    }
 
     public DbSet<User> Users {  get; set; }
     public DbSet<Product> Products {  get; set; }
