@@ -3,6 +3,7 @@
 	(dotnet tool update --global dotnet-ef)
 
 ef 9 code first 
+	---------- new project ----------
 	1.	install package
 		dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 9.0.1
 		dotnet add package Microsoft.EntityFrameworkCore.Design --version 9.0.1
@@ -10,8 +11,14 @@ ef 9 code first
 	3. appdbconext
 	4. add entity to appdbconext
 	5. add migration
-		dotnet ef migrations add ""
+		dotnet ef migrations add NAME
 	6. update database
 		dotnet ef database update
 
 
+	-----------------------------------
+	--------- existing project --------
+	1. create/modify entity
+	2. add new entity to appdbconext
+	3. add migration
+	4. update database
