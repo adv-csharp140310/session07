@@ -83,6 +83,8 @@ public partial class UsersForm : Form
         //    total = ctx.Users.Where(x => x.IsActive == isActive).Count();
         //}
 
+        //ctx.Blogs.Max(x => x.Id);
+
         //Linq imutable
         var query = ctx.Users.AsQueryable();        
         if (comboBoxIsActive.SelectedItem != "All")
@@ -92,10 +94,10 @@ public partial class UsersForm : Form
         }
 
 
-        if (!string.IsNullOrWhiteSpace(textBoxFirstName.Text))
+        if (!string.IsNullOrWhiteSpace(textBoxName.Text))
         {
             //query = query.Where(x => x.FirstName == textBoxFirstName.Text);
-            query = query.Where(x => x.FirstName.Contains(textBoxFirstName.Text)); //like '%%'
+            query = query.Where(x => x.FirstName.Contains(textBoxName.Text) || x.LastName.Contains(textBoxName.Text)); //like '%%'
         }
         //like 'f%'     - StartsWith
         //like '%f'     - EndsWith
@@ -107,7 +109,7 @@ public partial class UsersForm : Form
 
         var total = query.Count();
 
-
+        
 
         totalPages = Convert.ToInt32(Math.Ceiling(total / Convert.ToDecimal(pageSize)));
 
