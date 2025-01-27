@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            buttonAddBlog = new Button();
             SuspendLayout();
+            // 
+            // buttonAddBlog
+            // 
+            buttonAddBlog.Location = new Point(12, 12);
+            buttonAddBlog.Name = "buttonAddBlog";
+            buttonAddBlog.Size = new Size(75, 23);
+            buttonAddBlog.TabIndex = 0;
+            buttonAddBlog.Text = "Add Blog";
+            buttonAddBlog.UseVisualStyleBackColor = true;
+            buttonAddBlog.Click += buttonAddBlog_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(772, 380);
+            Controls.Add(buttonAddBlog);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
@@ -42,5 +54,7 @@
         }
 
         #endregion
+
+        private Button buttonAddBlog;
     }
 }
