@@ -39,6 +39,8 @@ partial class UsersForm
         label1 = new Label();
         comboBoxIsActive = new ComboBox();
         button1 = new Button();
+        label2 = new Label();
+        textBoxFirstName = new TextBox();
         groupBoxUsers.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)dataGridViewUsers).BeginInit();
         SuspendLayout();
@@ -150,11 +152,29 @@ partial class UsersForm
         button1.UseVisualStyleBackColor = true;
         button1.Click += button1_Click;
         // 
+        // label2
+        // 
+        label2.AutoSize = true;
+        label2.Location = new Point(193, 312);
+        label2.Name = "label2";
+        label2.Size = new Size(64, 15);
+        label2.TabIndex = 10;
+        label2.Text = "First Name";
+        // 
+        // textBoxFirstName
+        // 
+        textBoxFirstName.Location = new Point(263, 308);
+        textBoxFirstName.Name = "textBoxFirstName";
+        textBoxFirstName.Size = new Size(134, 23);
+        textBoxFirstName.TabIndex = 11;
+        // 
         // UsersForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(989, 670);
+        Controls.Add(textBoxFirstName);
+        Controls.Add(label2);
         Controls.Add(button1);
         Controls.Add(comboBoxIsActive);
         Controls.Add(label1);
@@ -187,4 +207,6 @@ partial class UsersForm
     private Label label1;
     private ComboBox comboBoxIsActive;
     private Button button1;
+    private Label label2;
+    private TextBox textBoxFirstName;
 }

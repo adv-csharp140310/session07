@@ -54,25 +54,61 @@ public partial class UsersForm : Form
         //page 2 = skip(3 = pageSize * page - 1).take(pageSize)
         //page 3 = skip(6 = pageSize * page - 1).take(pageSize)
 
-        int total = 0;
-        if (comboBoxIsActive.SelectedItem == "All") {
-            dataGridViewUsers.DataSource = ctx.Users
-               .Skip(pageSize * (currentPage - 1))
-               .Take(pageSize).ToList();
-            total = ctx.Users.Count();
-        }
-        if(comboBoxIsActive.SelectedItem != "All") {
+        
+        //imutable 
+        var s = "test";
+        s = "xyz";
+        var x2 = s.Replace('y', 'N'); //s? xyz, s2:xNz
+        s =  s.ToUpper();
+
+        //mutable
+        var x = 2;
+        x = 4;
+
+        //int total = 0;
+
+        //if (comboBoxIsActive.SelectedItem == "All") {
+        //    dataGridViewUsers.DataSource = ctx.Users
+        //       .Skip(pageSize * (currentPage - 1))
+        //       .Take(pageSize).ToList();
+        //    total = ctx.Users.Count();
+        //}
+        //if(comboBoxIsActive.SelectedItem != "All") {
+        //    var isActive = comboBoxIsActive.SelectedItem == "Active";
+        //    dataGridViewUsers.DataSource = ctx.Users
+        //        .Where(x => x.IsActive == isActive)
+        //        .Skip(pageSize * (currentPage - 1))
+        //        .Take(pageSize).ToList();
+
+        //    total = ctx.Users.Where(x => x.IsActive == isActive).Count();
+        //}
+
+        //Linq imutable
+        var query = ctx.Users.AsQueryable();        
+        if (comboBoxIsActive.SelectedItem != "All")
+        {
             var isActive = comboBoxIsActive.SelectedItem == "Active";
-            dataGridViewUsers.DataSource = ctx.Users
-                .Where(x => x.IsActive == isActive)
+            query = query.Where(x => x.IsActive == isActive);
+        }
+
+
+        if (!string.IsNullOrWhiteSpace(textBoxFirstName.Text))
+        {
+            //query = query.Where(x => x.FirstName == textBoxFirstName.Text);
+            query = query.Where(x => x.FirstName.Contains(textBoxFirstName.Text)); //like '%%'
+        }
+        //like 'f%'     - StartsWith
+        //like '%f'     - EndsWith
+        //like '%f%'    - Contains
+
+        dataGridViewUsers.DataSource = query
                 .Skip(pageSize * (currentPage - 1))
                 .Take(pageSize).ToList();
 
-            total = ctx.Users.Where(x => x.IsActive == isActive).Count();
-        }
-        
+        var total = query.Count();
 
-       
+
+
         totalPages = Convert.ToInt32(Math.Ceiling(total / Convert.ToDecimal(pageSize)));
 
         labelPage.Text = $"{currentPage}/{totalPages}";
