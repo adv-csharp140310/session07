@@ -84,13 +84,17 @@ public partial class UsersForm : Form
         //}
 
         //ctx.Blogs.Max(x => x.Id);
-
+        
         //Linq imutable
         var query = ctx.Users.AsQueryable();        
         if (comboBoxIsActive.SelectedItem != "All")
         {
             var isActive = comboBoxIsActive.SelectedItem == "Active";
             query = query.Where(x => x.IsActive == isActive);
+
+
+            List<User> users = new List<User>();
+            users.Where(x => x.IsActive == isActive).ToList();
         }
 
 
@@ -114,6 +118,10 @@ public partial class UsersForm : Form
         totalPages = Convert.ToInt32(Math.Ceiling(total / Convert.ToDecimal(pageSize)));
 
         labelPage.Text = $"{currentPage}/{totalPages}";
+
+        
+
+        //Linq - IEnumerable
     }
 
     private void buttonFirst_Click(object sender, EventArgs e)
