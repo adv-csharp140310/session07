@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using session06.Model.Config;
 using session06.utils;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace session06.Model;
 public class AppDbContext : DbContext
@@ -14,15 +16,14 @@ public class AppDbContext : DbContext
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {        
-        modelBuilder.Entity<User>().ToTable("users_xyz", "auth");
-        //Fluent API
-        modelBuilder.Entity<User>()
-            .Property(x => x.Email)
-            .HasMaxLength(50)
-            .IsUnicode(false)
-            .HasColumnName("email_xyz")
-        ;
+    {
+        //modelBuilder.ApplyConfiguration(new UserConfig());
+        //modelBuilder.ApplyConfiguration(new ProductConfig());
+
+        //Refleaction //<-
+
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        
 
         //******
 
