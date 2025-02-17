@@ -1,41 +1,41 @@
 ﻿using session06.Model;
-
 namespace session06.Repositoy;
-public class UserRepository
+
+public class ProductRepository
 {
     //crud
 
-    public void Add(User model)
+    public void Add(Product model)
     {
         using var ctx = new AppDbContext();
         ctx.Add(model);
         ctx.SaveChanges();
     }
 
-    public void Update(User model)
+    public void Update(Product model)
     {
         using var ctx = new AppDbContext();        
         ctx.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
         ctx.SaveChanges();
     }
 
-    public void Delete(User model)
+    public void Delete(Product model)
     {
         using var ctx = new AppDbContext();
         ctx.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
         ctx.SaveChanges();
     }
 
-    public User GetById(int Id)
+    public Product GetById(int Id)
     {
         using var ctx = new AppDbContext();
-        return ctx.Users.FirstOrDefault(x => x.Id == Id);        
+        return ctx.Products.FirstOrDefault(x => x.Id == Id);        
     }
 
     //leaky abstraction
-    public IQueryable<User> Get()
+    public IQueryable<Product> Get()
     {
         var ctx = new AppDbContext();
-        return ctx.Users.AsQueryable();
+        return ctx.Products.AsQueryable();
     }
 }
