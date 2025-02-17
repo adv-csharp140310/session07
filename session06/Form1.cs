@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using session06.Generics;
 using session06.Model;
 using session06.UI;
 using System.Reflection;
@@ -56,5 +57,36 @@ namespace session06
             var frm = new UsersForm();
             frm.ShowDialog();
         }
+
+        private void buttonStack_Click(object sender, EventArgs e)
+        {
+            //var stackInt = new MyStackInt();
+            //stackInt.Push(1);
+            //stackInt.Push(2);
+            //stackInt.Push(3);
+            //stackInt.Push(4);
+            //MessageBox.Show(stackInt.Pop().ToString());
+            //stackInt.Push(5);
+            //MessageBox.Show(stackInt.Pop().ToString());
+
+
+            //var stackString = new MyStackString();
+            //stackString.Push("Samira");
+            //stackString.Push("Akbar");
+            //stackString.Push("Arshia");
+            //stackString.Push("m.seyedmorad");
+            //MessageBox.Show(stackString.Pop().ToString());
+            //MessageBox.Show(stackString.Pop().ToString());
+
+            var stack = new MyStackGenric<string>();
+            stack.Push("Samira");
+            stack.Push("Akbar");
+            stack.Push("Arshia");
+            stack.Push("m.seyedmorad");
+            MessageBox.Show(stack.Pop().ToString());
+            MessageBox.Show(stack.Pop().ToString());
+        }
     }
 }
+
+

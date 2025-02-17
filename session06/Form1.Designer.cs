@@ -30,6 +30,7 @@
         {
             buttonAddBlog = new Button();
             buttonUserManagment = new Button();
+            buttonStack = new Button();
             SuspendLayout();
             // 
             // buttonAddBlog
@@ -52,11 +53,22 @@
             buttonUserManagment.UseVisualStyleBackColor = true;
             buttonUserManagment.Click += buttonUserManagment_Click;
             // 
+            // buttonStack
+            // 
+            buttonStack.Location = new Point(12, 183);
+            buttonStack.Name = "buttonStack";
+            buttonStack.Size = new Size(154, 23);
+            buttonStack.TabIndex = 2;
+            buttonStack.Text = "Stack";
+            buttonStack.UseVisualStyleBackColor = true;
+            buttonStack.Click += buttonStack_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(772, 380);
+            Controls.Add(buttonStack);
             Controls.Add(buttonUserManagment);
             Controls.Add(buttonAddBlog);
             Name = "Form1";
@@ -69,5 +81,6 @@
 
         private Button buttonAddBlog;
         private Button buttonUserManagment;
+        private Button buttonStack;
     }
 }
