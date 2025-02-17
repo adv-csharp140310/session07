@@ -113,9 +113,8 @@ public static class DynamicFormUtils
         }
     }
 
-    public static object GetFormData(this Control target, Type type)
-    {        
-        var model = Activator.CreateInstance(type);
+    public static T GetFormData<T>(this Control target, T model)
+    {      
         foreach (Control control in target.Controls)
         {
             if (control.Tag is PropertyInfo property)

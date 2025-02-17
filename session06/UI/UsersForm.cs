@@ -37,8 +37,7 @@ public partial class UsersForm : Form
     private void buttonSave_Click(object sender, EventArgs e)
     {
         //Genrics
-        //Unboxig
-        var model = (User)groupBoxUsers.GetFormData(typeof(User));
+        var model = groupBoxUsers.GetFormData(new User());
         //var ctx = new AppDbContext();
         //ctx.Add(model);
         //ctx.SaveChanges();
