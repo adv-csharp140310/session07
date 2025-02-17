@@ -1,4 +1,5 @@
 ﻿using session06.Model;
+using session06.Service;
 using session06.Utils;
 using System;
 using System.Collections.Generic;
@@ -38,9 +39,12 @@ public partial class UsersForm : Form
         //Genrics
         //Unboxig
         var model = (User)groupBoxUsers.GetFormData(typeof(User));
-        var ctx = new AppDbContext();
-        ctx.Add(model);
-        ctx.SaveChanges();
+        //var ctx = new AppDbContext();
+        //ctx.Add(model);
+        //ctx.SaveChanges();
+        UserService service = new UserService();
+        service.Add(model);
+
         loadData();
         groupBoxUsers.SetFormData(new User());
     }

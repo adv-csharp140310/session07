@@ -22,3 +22,15 @@ ef 9 code first
 	2. add new entity to appdbconext
 	3. add migration
 	4. update database
+
+
+
+Software Architecture
+	Monolithic
+		- 1 file exe
+		- layerd
+		- n-layer: 3-layer
+	n-tier
+		- n-layer vali har laye ye file exe
+	Service Oriented
+	Micro Service
