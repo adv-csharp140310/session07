@@ -34,3 +34,27 @@ Software Architecture
 		- n-layer vali har laye ye file exe
 	Service Oriented
 	Micro Service
+		DDD
+
+
+
+Security
+	Authenticate - اهراز هویت
+		Form login
+			username
+				unique
+					email
+					text
+					phone / opt
+					national code
+			password
+				encryption
+					two-way
+						salam (enc - key)-> sdfgt87 (dec - key)-> salme
+					one-way - hash
+						salam -> 21q32q43124 ❌❌❌ salam 
+
+						sha512 - 512bit
+		LDAP 
+		OAuth 2.0
+	Authorize - سطح دسترسی

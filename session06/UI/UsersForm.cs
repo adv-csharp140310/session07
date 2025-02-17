@@ -36,93 +36,27 @@ public partial class UsersForm : Form
 
     private void buttonSave_Click(object sender, EventArgs e)
     {
-        //Genrics
         var model = groupBoxUsers.GetFormData(new User());
-        //var ctx = new AppDbContext();
-        //ctx.Add(model);
-        //ctx.SaveChanges();
         UserService service = new UserService();
         service.Add(model);
-
         loadData();
         groupBoxUsers.SetFormData(new User());
     }
 
     private void loadData()
     {
-        var ctx = new AppDbContext();
-        //Skip(10) -> 10 avalo ignore
-        //Take(3) -> 3 ta ro begir
-        //page 1 = skip(0 = pageSize * page - 1).take(pageSize)
-        //page 2 = skip(3 = pageSize * page - 1).take(pageSize)
-        //page 3 = skip(6 = pageSize * page - 1).take(pageSize)
-
-        
-        //imutable 
-        var s = "test";
-        s = "xyz";
-        var x2 = s.Replace('y', 'N'); //s? xyz, s2:xNz
-        s =  s.ToUpper();
-
-        //mutable
-        var x = 2;
-        x = 4;
-
-        //int total = 0;
-
-        //if (comboBoxIsActive.SelectedItem == "All") {
-        //    dataGridViewUsers.DataSource = ctx.Users
-        //       .Skip(pageSize * (currentPage - 1))
-        //       .Take(pageSize).ToList();
-        //    total = ctx.Users.Count();
-        //}
-        //if(comboBoxIsActive.SelectedItem != "All") {
-        //    var isActive = comboBoxIsActive.SelectedItem == "Active";
-        //    dataGridViewUsers.DataSource = ctx.Users
-        //        .Where(x => x.IsActive == isActive)
-        //        .Skip(pageSize * (currentPage - 1))
-        //        .Take(pageSize).ToList();
-
-        //    total = ctx.Users.Where(x => x.IsActive == isActive).Count();
-        //}
-
-        //ctx.Blogs.Max(x => x.Id);
-        
-        //Linq imutable
-        var query = ctx.Users.AsQueryable();        
+        bool? isActive = null;
         if (comboBoxIsActive.SelectedItem != "All")
         {
-            var isActive = comboBoxIsActive.SelectedItem == "Active";
-            query = query.Where(x => x.IsActive == isActive);
-
-
-            List<User> users = new List<User>();
-            users.Where(x => x.IsActive == isActive).ToList();
+            isActive = comboBoxIsActive.SelectedItem == "Active";
         }
 
+        UserService service = new UserService();
+        var (users, total) = service.LoadData(isActive, textBoxName.Text, currentPage - 1, pageSize);
 
-        if (!string.IsNullOrWhiteSpace(textBoxName.Text))
-        {
-            //query = query.Where(x => x.FirstName == textBoxFirstName.Text);
-            query = query.Where(x => x.FirstName.Contains(textBoxName.Text) || x.LastName.Contains(textBoxName.Text)); //like '%%'
-        }
-        //like 'f%'     - StartsWith
-        //like '%f'     - EndsWith
-        //like '%f%'    - Contains
-
-        dataGridViewUsers.DataSource = query
-                .Skip(pageSize * (currentPage - 1))
-                .Take(pageSize).ToList();
-
-        var total = query.Count();
-
-        
-
+        dataGridViewUsers.DataSource = users;
         totalPages = Convert.ToInt32(Math.Ceiling(total / Convert.ToDecimal(pageSize)));
-
         labelPage.Text = $"{currentPage}/{totalPages}";
-
-        
 
         //Linq - IEnumerable
     }
