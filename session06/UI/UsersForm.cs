@@ -1,15 +1,7 @@
 ﻿using session06.Model;
 using session06.Service;
 using session06.Utils;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace session06.UI;
 public partial class UsersForm : Form
@@ -37,7 +29,7 @@ public partial class UsersForm : Form
     private void buttonSave_Click(object sender, EventArgs e)
     {
         var model = groupBoxUsers.GetFormData(new User());
-        UserService service = new UserService();
+        UserService service = new UserService();        
         service.Add(model);
         loadData();
         groupBoxUsers.SetFormData(new User());

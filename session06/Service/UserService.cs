@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BCrypt;
 
 namespace session06.Service;
 public  class UserService
@@ -33,10 +34,12 @@ public  class UserService
 
         //Business Logic
 
-        //Database        
+        //Database
+        model.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
+
         repository.Add(model);                
-        var b = new Blog();
-        repository.Add(b);
+        //var b = new Blog();
+        //repository.Add(b);
 
     }
 
