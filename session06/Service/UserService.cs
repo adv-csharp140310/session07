@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 namespace session06.Service;
 public  class UserService
 {
-    UserRepository userRepository;
+    //UserRepository userRepository;
+    GenericRepository<User> repository;
 
     public UserService()
     {
         //SOLID - Dependcy Injection
-        UserRepository userRepository = new UserRepository();
+        //userRepository = new UserRepository();
+        repository = new GenericRepository<User>();
     }
 
     public void Add(User model)
@@ -28,6 +30,10 @@ public  class UserService
         //Business Logic
 
         //Database        
-        userRepository.Add(model);
+        repository.Add(model);
+
+        //Unit of work
+        //var b = new Blog();
+        //repository.Add(b);
     }
 }

@@ -85,6 +85,8 @@ namespace session06
             stack.Push("m.seyedmorad");
             MessageBox.Show(stack.Pop().ToString());
             MessageBox.Show(stack.Pop().ToString());
+
+            var stack2 = new MyStackGenric<Blog>();
         }
     }
 }

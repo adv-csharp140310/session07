@@ -8,11 +8,8 @@ namespace session06.Model;
 
 //Data Annotation (attributes)
 //Fluent API
-public class User
+public class User : BaseEntity
 {
-    [NoUI]
-    public int Id { get; set; }
-
     [MaxLength(100)]
     [Required]
     public string FirstName { get; set; }

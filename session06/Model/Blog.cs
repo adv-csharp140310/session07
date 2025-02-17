@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace session06.Model;
-public class Blog
+public class Blog: BaseEntity
 {
-    public int Id { get; set; }
     public string Title { get; set; }
     public string Content { get; set; }
 
